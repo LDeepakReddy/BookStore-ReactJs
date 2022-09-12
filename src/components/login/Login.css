@@ -1,0 +1,81 @@
+.loginContainer {
+    /* border: 1px solid black; */
+    width: 20vw;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: auto;
+    border: 1px black;
+}
+
+
+.emailSignIn {
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 15%;
+}
+
+.passwordSignIn {
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 15%;
+}
+
+.loginBtn {
+    /* border: 1px solid red; */
+    width: 70%;
+    height: 12%;
+}
+
+.login-btn {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: #A03037;
+}
+
+.or {
+    /* border: 1px solid red; */
+    width: 70%;
+    height: 12%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.extraBtn {
+    /* border: 1px solid red; */
+    width: 70%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.FBbutton {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 25px;
+}
+
+.FB {
+    width: 120px;
+    height: 40px;
+    background-color: #4266B2;
+    color: #FFFFFF;
+    font-size: 14px;
+    text-transform: none;
+
+
+
+}
+
+.GoogleB {
+    width: 120px;
+    height: 40px;
+    background-color: #555557;
+    color: #FFFFFF;
+    font-size: 14px;
+    text-transform: none;
+}

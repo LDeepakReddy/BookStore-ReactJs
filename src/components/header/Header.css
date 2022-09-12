@@ -1,0 +1,39 @@
+.Booktitle{
+   
+      
+        font-size: 18px;
+        padding-left: 10px;
+        font-family: 'Roboto', sans-serif;
+      
+}
+
+.imageAndText{
+    margin-left: 150px;
+}
+.searchbar{
+    width: 100px;
+}
+
+.profile {
+    margin-left: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .profile-name {
+    font-size: 13px;
+    color: #FFFFFF;
+    padding-top: 5px;
+  }
+  
+  .carticon {
+   margin-left: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
