@@ -1,18 +1,21 @@
 import { Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import UserService from '../../services/UserService';
 import './SignUp.css'
 
 
 function SignUp(props) {
+    const userService = new UserService();
 
     const [text, setText] = useState({
+        role: "user",
         first_name: '',
         last_name: '',
         phone_no: '',
         email: '',
         password: '',
+        confirmPassword: '',
 
-        role: "user",
         firstNameError: false,
         lastNameError: false,
         emailError: false,
@@ -41,14 +44,26 @@ function SignUp(props) {
     const next = () => {
         let isValidated = validation();
         let data = {
+            "role":text.role,
             "first_name": text.first_name,
             "last_name": text.last_name,
             "email": text.email,
+            "phone_no": text.phone_no,
             "password": text.password,
-            "phone_no": text.phone_no
+            'confirm_password':text.confirmPassword,
+           
         }
-
+        if (!isValidated) {
+            userService.Signup(data)
+                .then((res) => {
+                    console.log(res);
+                }).catch((err) => {
+                    console.log(err);
+                })
+        }
     }
+
+
 
     const changeState = (event) => {
         setText(previousValue => {
@@ -62,6 +77,21 @@ function SignUp(props) {
     return (
         <div className='mainSignupContainer'>
             <div className='signUpContainer'>
+
+            <div className='RoleSignUp'>
+                    <TextField
+
+                        className="input"
+                        id="outlined-basic"
+                        label="Role"
+
+                        name='role'
+                        variant="outlined"
+                        size="small"
+                        onChange={(e) => changeState(e)}
+                    />
+
+                </div>
                 <div className='first_nameSignUp'>
                     <TextField
 
@@ -71,7 +101,7 @@ function SignUp(props) {
 
                         name='first_name'
                         error={text.firstNameError}
-                        helperText={text.firstNameError == true ? 'FirstName required': ' '}
+                        helperText={text.firstNameError == true ? 'FirstName required' : ' '}
                         variant="outlined"
                         size="small"
                         onChange={(e) => changeState(e)}
@@ -87,7 +117,7 @@ function SignUp(props) {
                         label="Last Name"
                         name='last_name'
                         error={text.lastNameError}
-                        helperText={text.lastNameError == true ? 'LastName required': ' '}
+                        helperText={text.lastNameError == true ? 'LastName required' : ' '}
                         variant="outlined"
                         size="small"
                         onChange={(e) => changeState(e)}
@@ -101,7 +131,7 @@ function SignUp(props) {
                         label="Email"
                         name='email'
                         error={text.emailError}
-                        helperText={text.emailError == true ? 'Email is required': ' '}
+                        helperText={text.emailError == true ? 'Email is required' : ' '}
                         variant="outlined"
                         size="small"
                         onChange={(e) => changeState(e)}
@@ -116,7 +146,20 @@ function SignUp(props) {
                         label="Password"
                         name='password'
                         error={text.passwordError}
-                        helperText={text.passwordError == true ? 'Password is required': ' '}
+                        helperText={text.passwordError == true ? 'Password is required' : ' '}
+                        variant="outlined"
+                        size="small"
+                        onChange={(e) => changeState(e)}
+                    />
+                </div>
+                <div className="passwordSignUp">
+                    <TextField
+
+                        id="outlined-basic"
+                        className="input"
+                        label="Confirm Password"
+                        name='confirmPassword'
+                        
                         variant="outlined"
                         size="small"
                         onChange={(e) => changeState(e)}

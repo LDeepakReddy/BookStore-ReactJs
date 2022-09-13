@@ -7,6 +7,7 @@
     justify-content: space-around;
     margin: auto;
     border: 1px black;
+    margin-top: 50px;
 }
 
 
@@ -70,6 +71,14 @@
 
 
 }
+.Forget_password {
+    padding-left: 110px;
+    margin-top: 2px;
+    color: #555557;
+  }
+  .forgetlink{
+    color: #555557;
+  }
 
 .GoogleB {
     width: 120px;

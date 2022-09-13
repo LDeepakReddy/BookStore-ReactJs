@@ -4,11 +4,14 @@ import imagebook1 from '../../images/book2.png';
 import imagebook2 from '../../images/book3.png';
 import './Bookview.css'
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import Header from '../header/Header';
 
 function Bookview(props) {
 
 
     return (
+        <>
+        <Header />
         <div className='allign'>
             <div className='booksContainer' >
                 <div>
@@ -110,6 +113,7 @@ function Bookview(props) {
 
 
         </div>
+        </>
     );
 }
 

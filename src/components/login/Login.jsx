@@ -1,10 +1,16 @@
 import { Button, TextField } from '@mui/material';
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserService from '../../services/UserService';
 import './Login.css'
+
+
+const userService = new UserService();
 
 function Login(props) {
 
+    const navigate = useNavigate();
     const [text, setText] = useState({
         email: '',
         password: '',
@@ -40,6 +46,17 @@ function Login(props) {
             "password": text.password,
 
         }
+        if (!isValidated) {
+            userService.Login(data,)
+              .then((res) => {
+                localStorage.setItem("token",res.data.token)
+                console.log(res)
+                  navigate('/dashboard')
+              
+              }).catch((err) => {
+                console.log(err);
+              })
+          }
 
     }
 
@@ -59,7 +76,7 @@ function Login(props) {
                         label="Email"
                         name='email'
                         error={text.emailError}
-                        helperText={text.emailError == true ? 'Email is required': ' '}
+                        helperText={text.emailError == true ? 'Email is required' : ' '}
                         onChange={(e) => changeState(e)}
                         variant="outlined"
                         size='small' />
@@ -71,11 +88,14 @@ function Login(props) {
                         name='password'
                         label="Password"
                         error={text.passwordError}
-                        helperText={text.passwordError == true ? 'Password is required': ' '}
+                        helperText={text.passwordError == true ? 'Password is required' : ' '}
 
                         onChange={(e) => changeState(e)}
                         variant="outlined"
                         size='small' />
+                </div>
+                <div class="Forget_password">
+                    <a className='forgetlink' href='http://localhost:3000/forgotpassword'>Forgot password?</a>
                 </div>
 
                 <Button style={{ width: '225px', backgroundColor: '#A03037', color: '#FFFFFF' }} onClick={next}>Login</Button>

@@ -1,7 +1,8 @@
 import { alpha, Card, IconButton, Toolbar, Tooltip } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import education from '../../images/education.svg';
 import { PersonOutlined, ShoppingCartOutlined } from "@mui/icons-material";
+
 
 import './Header.css'
 
@@ -9,14 +10,14 @@ import './Header.css'
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-
-
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
 function Header(props) {
+
+    
 
 
     const Search = styled('div')(({ theme }) => ({
@@ -55,7 +56,7 @@ function Header(props) {
     return (
         <div>
 
-            <Toolbar style={{ backgroundColor: '#A03037', height: '60px', }}>
+            <Toolbar style={{ backgroundColor: '#A03037', height: '60px',width:'auto' }}>
                 <div className="imageAndText">
                     <img className='bookImage' src={education} alt="" />
                     <span className='Booktitle' style={{ color: 'white' }}>Bookstore</span>

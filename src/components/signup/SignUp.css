@@ -1,11 +1,12 @@
 .mainSignupContainer{
     
     width: 20vw;
-    height: 50vh;
+    height: max-content;
+    box-sizing: content-box;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: auto;
+    /* margin: auto; */
     
 }
 
@@ -20,7 +21,7 @@
 .signUpContainer{
    
     width: 80%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -30,43 +31,61 @@
    
     width: 100%;
     height: 20%;
+    margin-bottom: 10px;
+    
+}
+.RoleSignUp{
+   
+    width: 100%;
+    height: 20%;
+   
+    
 }
 
 .last_nameSignUp{
    
     width: 100%;
     height: 20%;
+    margin-bottom: 10px;
 }
 
 .emailSignUp{
     /* border: 1px solid red; */
     width: 100%;
     height: 20%;
+    margin-bottom: 10px;
 }
 
 .passwordSignUp{
     /* border: 1px solid red; */
     width: 100%;
-    height: 20%;
+    height: 10%;
 }
 
 .mobileNumberSignUp{
     /* border: 1px solid red; */
     width: 100%;
     height: 20%;
+    margin-bottom: 10px;
 }
 
 .signUpBtn{
    
     width: 75%;
     height: 15%;
+    margin-bottom: 20px;
+    
 }
 
 .input{
     width: 205px;
+    height: 50px;
+    margin-bottom: 0px;
 }
 
 .signUp-btn{
+    margin-bottom: 25px;
+    margin-top: 25px;
     width: 255PX;
     height: 100%;
     /* color: white; */
