@@ -1,17 +1,22 @@
 .booksContainer {
     margin-top: 25px;
     margin-left: 25px;
-    border: 1px solid black;
+   
+    border: 1px solid gainsboro;
     width: 233px;
     height: 275px;
     display: flex;
     flex-direction: column;
+    box-shadow: rgba(141, 137, 137, 0.24) 0px 3px 8px;
 }
 
 .allign {
-    display: flex;
-    align-items: stretch;
-    margin-left: 90px;
+    /* display: flex; */
+    /* flex-direction: row; */
+    justify-content: space-between;
+    align-items: center;
+    /* margin-left: 90px; */
+    height: auto;
 }
 
 .bookTopSection {
@@ -21,8 +26,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #F5F5F5;
+   
     margin-bottom: 10px;
+    background-color:rgb(185, 183, 181);
 }
 
 .booksImage {
@@ -48,16 +54,29 @@
     font-weight: 700;
     position: relative;
     left: 20px;
+    font-size: 14px;
 }
 
-.booksPrice {
-    font-weight: 700;
+.price-container {
+ 
     position: relative;
-    left: 20px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+.dicounted-price {
+    margin-top: 5px;
+    margin-left: 13px;
+    font-size: revert;
+}
+
+.actual-price {
+    margin-left: 13px;
+    text-decoration: line-through;
+    color: gray;
 }
 
 .booksAuthor {
-    font-size: small;
+    font-size: 10px;
     position: relative;
     left: 20px;
 }
@@ -76,6 +95,6 @@
 }
 
 
-.number{
-    color: black;
+.quantity{
+    color: #878787;
 }

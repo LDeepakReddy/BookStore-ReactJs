@@ -1,7 +1,10 @@
-import { alpha, Card, IconButton, Toolbar, Tooltip } from '@mui/material';
+import { alpha, Card, Divider, IconButton, ListItemText, Menu, MenuList, Toolbar, Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import education from '../../images/education.svg';
 import { PersonOutlined, ShoppingCartOutlined } from "@mui/icons-material";
+import MenuItem from '@mui/material/MenuItem';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 
 
 import './Header.css'
@@ -17,7 +20,15 @@ import SearchIcon from '@mui/icons-material/Search';
 
 function Header(props) {
 
+    // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    // const open = Boolean(anchorEl);
     
+    // const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    //   setAnchorEl(event.currentTarget);
+    // };
+    // const handleClose = () => {
+    //   setAnchorEl(null);
+    // };
 
 
     const Search = styled('div')(({ theme }) => ({
@@ -56,7 +67,7 @@ function Header(props) {
     return (
         <div>
 
-            <Toolbar style={{ backgroundColor: '#A03037', height: '60px',width:'auto' }}>
+            <Toolbar style={{ backgroundColor: '#A03037', height: '60px', width: '1300px' }}>
                 <div className="imageAndText">
                     <img className='bookImage' src={education} alt="" />
                     <span className='Booktitle' style={{ color: 'white' }}>Bookstore</span>
@@ -73,7 +84,30 @@ function Header(props) {
 
                 <div className="profile">
                     <PersonOutlined style={{ color: '#FFFFFF' }} />
-                    <span className="profile-name">Deepak</span>
+                    <span
+                       
+                        className="profile-name">Deepak </span>
+                    {/* <Menu
+                        id="basic-menu"
+
+                       
+                    ></Menu>
+
+                    <MenuItem>
+                        <FavoriteIcon>
+
+                        </FavoriteIcon>
+                        <ListItemText>My Wishlist</ListItemText>
+
+                    </MenuItem>
+                    <MenuItem>
+
+                        <ListItemText>Logout</ListItemText>
+
+                    </MenuItem> */}
+
+
+
                 </div>
                 <div className="carticon">
 

@@ -1,10 +1,13 @@
 import { Button, TextField } from '@mui/material';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HomePage from '../../pages/homepage/HomePage';
+import UserService from '../../services/UserService';
 import Header from '../header/Header';
 import './ForgotPassword.css';
+
+const userService = new UserService();
 function ForgotPassword(props) {
     const navigate = useNavigate();
 
@@ -12,6 +15,50 @@ function ForgotPassword(props) {
         navigate('/')
 
     };
+
+    const [text, setText] = useState({
+        email: '',
+        emailError: false,
+
+    });
+    const changeState = (event) => {
+        setText(previousValue => {
+            return { ...previousValue, [event.target.name]: event.target.value }
+        })
+    }
+
+    const validation = () => {
+        let isError = false;
+        const error = text;
+        error.emailError = text.email === '' ? true : false;
+
+
+        setText({
+            ...error
+        })
+
+        isError = error.emailError
+        return isError;
+    }
+
+    const reset = () => {
+        let isValidated = validation();
+        let data = {
+
+            "email": text.email,
+
+        }
+        if (!isValidated) {
+            userService.forgotPassword(data,)
+                .then((res) => {
+                    console.log(res)
+
+
+                }).catch((err) => {
+                    console.log(err);
+                })
+        }
+    }
 
     return (
         <>
@@ -33,13 +80,17 @@ function ForgotPassword(props) {
                                 <TextField
                                     style={{ width: 300 }}
                                     id="outlined-basic"
+                                    name='email'
                                     label="Email"
+                                    error={text.emailError}
+                                    helperText={text.emailError == true ? 'Email is required' : ' '}
+                                    onChange={(e) => changeState(e)}
                                     variant="outlined"
                                     size="small"
                                 />
                             </div>
                             <div className='reset_button'>
-                                <Button style={{ backgroundColor: "#A03037", color: 'white' }}>Reset Password</Button>
+                                <Button onClick={reset} style={{ backgroundColor: "#A03037", color: 'white' }}>Reset Password</Button>
                             </div>
                             <div>
                                 <Button onClick={clickToSignup}

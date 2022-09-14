@@ -1,3 +1,4 @@
+import { Password } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
 
 import React, { useState } from 'react';
@@ -84,6 +85,7 @@ function Login(props) {
                 <div className='passwordSignIn'>
                     <TextField
                         id="outlined-basic"
+                        type="password"
                         className='password-SignIn'
                         name='password'
                         label="Password"
