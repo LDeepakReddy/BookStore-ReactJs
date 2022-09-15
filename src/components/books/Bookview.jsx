@@ -4,11 +4,16 @@ import imagebook1 from '../../images/Image7.png';
 import './Bookview.css'
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import Header from '../header/Header';
+import { useNavigate } from 'react-router-dom';
 
 function Bookview(props) {
-    // const getbookbyId(){
+    
 
-    // }
+    const bookDetail = (data) => {
+        props.listenToBooks(true);
+        props.listenToEachBook(data);
+    }
+   
 
 
     return (
@@ -16,7 +21,7 @@ function Bookview(props) {
 
             <div className='allign'>
 
-                <div className='booksContainer'  >
+                <div className='booksContainer' onClick={()=>bookDetail(props.arrayBook)} >
                     {/* <div> */}
                     <div className="bookTopSection">
                         <div className="booksImage">

@@ -37,3 +37,14 @@
     align-items: center;
     cursor: pointer;
   }
+  .Logout{
+    margin-left: 20px;
+    font-size: 14px;
+    font-stretch: condensed;
+    font-weight: 600;
+  }
+  .MyWishlist{
+    font-size: 14px;
+    font-weight: 600;
+
+  }

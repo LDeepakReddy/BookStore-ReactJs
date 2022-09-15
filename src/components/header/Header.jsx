@@ -1,7 +1,7 @@
-import { alpha, Card, Divider, IconButton, ListItemText, Menu, MenuList, Toolbar, Tooltip } from '@mui/material';
+import { ListItemText, Menu, MenuList, Toolbar, } from '@mui/material';
 import React, { useState } from 'react';
 import education from '../../images/education.svg';
-import { PersonOutlined, ShoppingCartOutlined } from "@mui/icons-material";
+import { Logout, PersonOutlined, ShoppingCartOutlined } from "@mui/icons-material";
 import MenuItem from '@mui/material/MenuItem';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
@@ -17,18 +17,25 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
 
 function Header(props) {
 
-    // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    // const open = Boolean(anchorEl);
-    
-    // const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    //   setAnchorEl(event.currentTarget);
-    // };
-    // const handleClose = () => {
-    //   setAnchorEl(null);
-    // };
+    const navigate = useNavigate();
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const logout=()=>{
+        localStorage.removeItem('token')
+        navigate('/')
+    }
 
 
     const Search = styled('div')(({ theme }) => ({
@@ -85,26 +92,35 @@ function Header(props) {
                 <div className="profile">
                     <PersonOutlined style={{ color: '#FFFFFF' }} />
                     <span
-                       
-                        className="profile-name">Deepak </span>
-                    {/* <Menu
+                        className="profile-name"
+                        id="basic-button"
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                    >Deepak </span>
+                    <Menu
                         id="basic-menu"
 
-                       
-                    ></Menu>
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                        }}
+                    >
 
-                    <MenuItem>
-                        <FavoriteIcon>
+                        <MenuItem>
+                            <FavoriteIcon>
+                            </FavoriteIcon>
+                            {/* <ListItemText>My Wishlist</ListItemText> */}
+                            <span className='MyWishlist'>My Wishlist</span>
+                        </MenuItem>
+                        <MenuItem className='Logout'>
+                            <span onClick={logout} className='Logout'>Logout</span>
+                        </MenuItem>
 
-                        </FavoriteIcon>
-                        <ListItemText>My Wishlist</ListItemText>
-
-                    </MenuItem>
-                    <MenuItem>
-
-                        <ListItemText>Logout</ListItemText>
-
-                    </MenuItem> */}
+                    </Menu>
 
 
 
@@ -113,7 +129,7 @@ function Header(props) {
 
                     <ShoppingCartOutlined style={{ color: '#FFFFFF' }} />
 
-                    <span className="profile-name">Cart</span>
+                    <span  className="profile-name">Cart</span>
                 </div>
 
 
