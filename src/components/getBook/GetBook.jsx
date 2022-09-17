@@ -5,6 +5,10 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import Header from '../header/Header';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import CartService from '../../services/CartService';
+import { useEffect } from 'react';
+
+const cartService = new CartService();
 
 function GetBook(props) {
     const navigate = useNavigate();
@@ -15,10 +19,26 @@ function GetBook(props) {
 
     };
 
+
+    const addToCart = (props) => {
+        console.log(props)
+        let data = {
+
+            'book_id': props.selectedBook.id
+        }
+        cartService.addBookToCart(data)
+            .then((res) => {
+                console.log(res);
+
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
+
     return (
         <>
             <div className='top'>
-                <span onClick={clickHome}  className='top-home'> Home/ </span> <span className='top-books'> Books({props.selectedBook.quantity})</span>
+                <span onClick={clickHome} className='top-home'> Home/ </span> <span className='top-books'> Books({props.selectedBook.quantity})</span>
             </div>
 
 
@@ -32,7 +52,7 @@ function GetBook(props) {
 
                     <div className='leftSection-BookDetailBottom'>
 
-                        <input type="button" value="ADD TO BAG" className='addToBag' />
+                        <input onClick={() => addToCart(props)} type="button" value="ADD TO BAG" className='addToBag' />
                         <input type="button" value="WISHLIST" className='wishlist' />
                     </div>
                 </div>
@@ -56,9 +76,9 @@ function GetBook(props) {
                         </div>
 
                         <div className="bookDesc">
-                            {props.selectedBook.description}
-                            {/* It includes a comprehensive collection of prebuilt components that are ready for use in production right out of the box.
-                            Material UI is beautiful by design and features a suite of customization options that make it easy to implement your own custom design system on top of our components. */}
+                            {/* {props.selectedBook.description} */}
+                            "'The Bookshop' is a postwar tragicomedy of manners, set in an isolated seaside town where an enterprising woman opens a bookstore
+                            only to find it beset by poltergeists, weather, and hostile townsfolk.
                         </div>
 
                     </div>

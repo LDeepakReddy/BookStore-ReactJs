@@ -7,6 +7,8 @@ import Mycart from './components/cart/Mycart';
 import ForgotPassword from './components/Forgotpassword/ForgotPassword';
 import GetBook from './components/getBook/GetBook';
 import Header from './components/header/Header';
+import OrderSummery from './components/Order/OrderSummery';
+import Cart from './pages/Cart/Cart';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 import HomePage from './pages/homepage/HomePage';
@@ -23,7 +25,8 @@ function App() {
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />
           {/* <Route path='/book/:bookId' element={<GetBook />} /> */}
-          <Route path='/mycart' element={<Mycart />} ></Route>
+          <Route path='/cart' element={<Cart />} ></Route>
+          <Route path='/order' element={<OrderSummery />} ></Route>
         </Routes>
       </BrowserRouter>
     

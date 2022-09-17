@@ -37,6 +37,10 @@ function Header(props) {
         navigate('/')
     }
 
+    const goToCart=()=>{
+        navigate('/cart')
+    }
+
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -72,7 +76,7 @@ function Header(props) {
     }));
 
     return (
-        <div>
+        <div className='headerToolbar'>
 
             <Toolbar style={{ backgroundColor: '#A03037', height: '60px', width: '1300px' }}>
                 <div className="imageAndText">
@@ -125,7 +129,7 @@ function Header(props) {
 
 
                 </div>
-                <div className="carticon">
+                <div onClick={goToCart} className="carticon">
 
                     <ShoppingCartOutlined style={{ color: '#FFFFFF' }} />
 
