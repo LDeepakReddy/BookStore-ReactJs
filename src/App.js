@@ -12,6 +12,7 @@ import Cart from './pages/Cart/Cart';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 import HomePage from './pages/homepage/HomePage';
+import OrderSuccess from './pages/OrderSuccess/OrderSuccess';
 
 
 
@@ -27,11 +28,12 @@ function App() {
           {/* <Route path='/book/:bookId' element={<GetBook />} /> */}
           <Route path='/cart' element={<Cart />} ></Route>
           <Route path='/order' element={<OrderSummery />} ></Route>
+          <Route path='/ordersuccess' element={<OrderSuccess />}></Route>
         </Routes>
       </BrowserRouter>
     
       {/* <ForgotPassword /> */}
-
+=
     </div>
 
 

@@ -10,18 +10,69 @@ import './Mycart.css'
 
 import CartService from '../../services/CartService';
 import { useNavigate } from 'react-router-dom';
+import AddressService from '../../services/AddressService';
+import OrderService from '../../services/OrderService';
+
+
+const orderService=new OrderService()
+const cartService = new CartService()
+const addressService = new AddressService()
+
+
 
 function Mycart(props) {
+
+
     const [cartArray, setcartArray] = useState([])
     const [cartId, setCartId] = useState(props.id)
 
     const navigate = useNavigate();
 
-    const cartService = new CartService()
+
 
 
     const [customerDetails, setCustomerDetails] = useState(false)
     const [orderSummery, setOrderSummery] = useState(false)
+
+
+
+    const [customerInputs, setcustomerInputs] = useState({
+        name: "DeepakReddy",
+        phoneNumber: "9182510123",
+        pincode: "",
+        state: "",
+        address: "",
+        city: "",
+        landmark: "",
+        addressType: "",
+    })
+
+
+    const changeState = (event) => {
+        setcustomerInputs(previousValues => {
+            return { ...previousValues, [event.target.name]: event.target.value }
+        })
+    }
+
+    const saveAddress = () => {
+        let data = {
+            "address_type": customerInputs.address_type,
+            "address": customerInputs.address,
+            "city": customerInputs.city,
+            "landmark": customerInputs.landmark,
+            "state": customerInputs.city,
+            "pincode": customerInputs.pincode,
+
+        }
+        addressService.addAddress(data)
+            .then((res) => {
+                console.log(res);
+                setOrderSummery(true)
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
+
 
     const customerDetailsOpen = () => {
         setCustomerDetails(true);
@@ -39,6 +90,8 @@ function Mycart(props) {
         getCartList();
     }, [])
 
+
+
     const getCartList = () => {
         cartService.getAllBooksFromCart()
             .then((response) => {
@@ -50,10 +103,10 @@ function Mycart(props) {
     }
 
     const removeCart = (props) => {
-        console.log(props.id)
+        console.log(props.arrayCart.id)
         let data = {
 
-            'id': props.id
+            'id': props.arrayCart.id
         }
         cartService.deleteBookFromCart(data)
             .then((res) => {
@@ -65,9 +118,9 @@ function Mycart(props) {
     }
 
     const increment = (props) => {
-        console.log(props.id)
+        // console.log(props.arrayCart.id)
         let data = {
-            'id': props.id
+            'id': props.arrayCart.id
         }
 
         cartService.incrementCartQuanitity(data)
@@ -83,7 +136,7 @@ function Mycart(props) {
     const decrement = (props) => {
         let data = {
 
-            'id': props.book.id
+            'id': props.arrayCart.id
         }
 
         cartService.decrementCartQuanitity(data)
@@ -94,6 +147,24 @@ function Mycart(props) {
                 console.log(err);
             })
 
+    }
+
+    const checkout = (props) => {
+        console.log(props.id)
+        let data = {
+
+            'address_id': 1,
+            'name': props.arrayCart.name,
+            'quantity': props.arrayCart.book_quantity
+        }
+        orderService.placeOrder(data)
+            .then((res) => {
+                console.log(res)
+                navigate('/ordersuccess')
+
+            }).catch((err) => {
+                console.log(err);
+            })
     }
 
     return (
@@ -109,8 +180,7 @@ function Mycart(props) {
                     <div className='location'><LocationOnOutlinedIcon className='locationicon' /> <button className='locationbutton' >Use Current Location</button></div>
                 </div>
 
-                {/* {cartArray.length >0 && cartArray.map((cart, index) =>(
-                    <div key={index}> */}
+
 
                 <div className='cartDetails'>
                     <img className='cartimage' src={image}></img>
@@ -127,13 +197,11 @@ function Mycart(props) {
                 <div className='cartQuantity'>
                     <RemoveCircleOutlineRoundedIcon onClick={() => decrement(props)} className='add' />
                     <span className='cartnumber'>{props.arrayCart.book_quantity}</span>
-                    <AddCircleOutlineRoundedIcon onClick={() => increment(props.id)} className='add' />
+                    <AddCircleOutlineRoundedIcon onClick={() => increment(props)} className='add' />
 
                     <span onClick={() => removeCart(props)}>Remove</span>
                 </div>
-                {/* 
-                    </div>
-              ) )} */}
+
 
 
                 <div className="placeorderbutton">
@@ -170,6 +238,8 @@ function Mycart(props) {
                             <TextField
                                 id="outlined-multiline-static"
                                 label="Address"
+                                name='address'
+                                onChange={changeState}
                                 style={{ paddingBottom: '20px', paddingRight: '10px', width: '475px' }}
                                 className='textfield-address'
                                 size='small'
@@ -180,6 +250,8 @@ function Mycart(props) {
                         <TextField
                             id="outlined-basic"
                             label="City"
+                            name='city'
+                            onChange={changeState}
                             className='textfields'
                             style={{ paddingBottom: '20px', paddingRight: '10px', width: '240px' }}
                             size='small'
@@ -188,6 +260,8 @@ function Mycart(props) {
                         <TextField
                             id="outlined-basic"
                             label="Landmark"
+                            name='landmark'
+                            onChange={changeState}
 
                             className='textfields'
                             size='small'
@@ -197,6 +271,8 @@ function Mycart(props) {
                             <TextField
                                 id="outlined-basic"
                                 label="State"
+                                name='state'
+                                onChange={changeState}
                                 className='textfields'
                                 style={{ paddingBottom: '20px', paddingRight: '10px', width: '240px' }}
                                 size='small'
@@ -206,6 +282,8 @@ function Mycart(props) {
                             <TextField
                                 id="outlined-basic"
                                 label="PinCode"
+                                name='pincode'
+                                onChange={changeState}
                                 className='textfields'
                                 size='small'
                                 variant="outlined"
@@ -220,9 +298,14 @@ function Mycart(props) {
                                     name="row-radio-buttons-group"
 
                                 >
-                                    <FormControlLabel className='radiofont' value="Home" control={<Radio />} label="Home" />
-                                    <FormControlLabel className='radiofont' value="Work" control={<Radio />} label="Work" />
-                                    <FormControlLabel className='radiofont' value="Other" control={<Radio />} label="Other" />
+                                    <FormControlLabel className='radiofont' name='address_type'
+                                        onChange={changeState} value="Home" control={<Radio />} label="Home" />
+
+                                    <FormControlLabel className='radiofont' name='address_type'
+                                        onChange={changeState} value="Work" control={<Radio />} label="Work" />
+
+                                    <FormControlLabel className='radiofont' name='address_type'
+                                        onChange={changeState} value="Other" control={<Radio />} label="Other" />
                                 </RadioGroup>
                             </FormControl>
                         </div>
@@ -267,7 +350,7 @@ function Mycart(props) {
 
 
 
-                            <div className="continuebutton">
+                            <div className="continuebutton" onClick={() => checkout(props)} >
                                 <Button className="continuebutton" style={{
                                     width: '150px',
                                     height: '35px',
@@ -285,13 +368,6 @@ function Mycart(props) {
                         <span className='customerAddress'>Order Summary</span>
                     </div>
             }
-
-
-
-
-
-
-
 
         </>
 

@@ -26,8 +26,13 @@ class CartService {
     }
 
 
-    deleteBookFromCart(data) {
-        return axiosService.delete(`${baseURL}/deleteBookByCartId`, data, header)
+    // deleteBookFromCart(data) {
+    //     return axiosService.delete(`${baseURL}/deleteBookByCartId`, data, header)
+    // }
+
+    deleteBookFromCart=(data)=>{
+        let response = axiosService.put(`${baseURL}/deleteBookByCartId`, data, header)
+        return response;
     }
 
 
