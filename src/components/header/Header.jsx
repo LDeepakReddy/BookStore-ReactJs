@@ -1,4 +1,4 @@
-import { ListItemText, Menu, MenuList, Toolbar, } from '@mui/material';
+import { Badge, ListItemText, Menu, MenuList, Toolbar, } from '@mui/material';
 import React, { useState } from 'react';
 import education from '../../images/education.svg';
 import { Logout, PersonOutlined, ShoppingCartOutlined } from "@mui/icons-material";
@@ -19,10 +19,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 
+
+
 function Header(props) {
 
     const navigate = useNavigate();
 
+    
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -32,15 +35,19 @@ function Header(props) {
         setAnchorEl(null);
     };
 
-    const logout=()=>{
+    const logout = () => {
         localStorage.removeItem('token')
         navigate('/')
     }
+    const goToWishlist = () => {
+        navigate('/wishlist')
+    }
 
-    const goToCart=()=>{
+    const goToCart = () => {
         navigate('/cart')
     }
 
+   
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -114,7 +121,7 @@ function Header(props) {
                         }}
                     >
 
-                        <MenuItem>
+                        <MenuItem onClick={goToWishlist}>
                             <FavoriteIcon>
                             </FavoriteIcon>
                             {/* <ListItemText>My Wishlist</ListItemText> */}
@@ -130,10 +137,10 @@ function Header(props) {
 
                 </div>
                 <div onClick={goToCart} className="carticon">
-
-                    <ShoppingCartOutlined style={{ color: '#FFFFFF' }} />
-
-                    <span  className="profile-name">Cart</span>
+                    <Badge badgeContent={1} color="primary">
+                        <ShoppingCartOutlined style={{ color: '#FFFFFF' }} />
+                    </Badge>
+                    <span className="profile-name">Cart</span>
                 </div>
 
 

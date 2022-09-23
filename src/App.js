@@ -1,5 +1,4 @@
 
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Bookview from './components/books/Bookview';
@@ -8,11 +7,13 @@ import ForgotPassword from './components/Forgotpassword/ForgotPassword';
 import GetBook from './components/getBook/GetBook';
 import Header from './components/header/Header';
 import OrderSummery from './components/Order/OrderSummery';
+import GetWishlist from './components/Wishlist/GetWishlist';
 import Cart from './pages/Cart/Cart';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 import HomePage from './pages/homepage/HomePage';
 import OrderSuccess from './pages/OrderSuccess/OrderSuccess';
+import Wishlist from './pages/wishlist/Wishlist';
 
 
 
@@ -27,13 +28,13 @@ function App() {
           <Route path='/forgotpassword' element={<ForgotPassword />} />
           {/* <Route path='/book/:bookId' element={<GetBook />} /> */}
           <Route path='/cart' element={<Cart />} ></Route>
-          <Route path='/order' element={<OrderSummery />} ></Route>
+          <Route path='/wishlist' element={<Wishlist />} ></Route>
           <Route path='/ordersuccess' element={<OrderSuccess />}></Route>
         </Routes>
       </BrowserRouter>
-    
+
       {/* <ForgotPassword /> */}
-=
+     
     </div>
 
 

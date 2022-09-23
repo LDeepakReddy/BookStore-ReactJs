@@ -13,7 +13,7 @@ function Dashboard(props) {
     const [bookArray, setBookArray] = useState([]);
     const [view, setView] = useState(true);
     const [selectedBook, setSelectedBook] = useState("");
-    
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,18 +31,19 @@ function Dashboard(props) {
             })
     }
 
-    const lowtohigh=()=>{
+    const lowtohigh = () => {
         // bookArray.sort()
         bookArray.sort((low, high) => low.price - high.price);
     }
 
-    const listenToBooks = () => {
-        setView(false)
+    // const listenToBooks = () => {
+    //     setView(false)
 
 
-    }
+    // }
 
     const listenToEachBook = (data) => {
+        setView(false)
         setSelectedBook(data);
         console.log(data);
     }
@@ -71,7 +72,7 @@ function Dashboard(props) {
                     <div className='getbooks' >
 
                         {bookArray.length > 0 && bookArray.map((book, index) => (
-                            <Bookview key={index} arrayBook={book} getBooks={getBooks} listenToBooks={listenToBooks} listenToEachBook={listenToEachBook}  />
+                            <Bookview key={index} arrayBook={book} getBooks={getBooks}  listenToEachBook={listenToEachBook} />
                         ))}
 
                     </div>

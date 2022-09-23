@@ -13,11 +13,26 @@ const cartService = new CartService();
 function GetBook(props) {
     const navigate = useNavigate();
     const [bookId, setBookId] = useState(props.selectedBook.id);
+    const [findbookArray, setFindBookArray] = useState([]);
 
     const clickHome = () => {
         navigate('/dashboard')
 
     };
+    useEffect(() => {
+        getCartList();
+    }, [])
+
+
+
+    const getCartList = () => {
+        cartService.getAllBooksFromCart()
+            .then((response) => {
+                setFindBookArray(response.data)
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
 
 
     const addToCart = (props) => {
@@ -33,6 +48,25 @@ function GetBook(props) {
             }).catch((err) => {
                 console.log(err);
             })
+    }
+
+    const addToWishlist = (props) => {
+        console.log(props)
+        let data = {
+
+            'book_id': props.selectedBook.id
+        }
+        cartService.addBookToWishlist(data)
+            .then((res) => {
+                console.log(res);
+
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
+
+    const findBook = () => {
+        //  prop.selectedBook.name === response.data.name
     }
 
     return (
@@ -53,7 +87,10 @@ function GetBook(props) {
                     <div className='leftSection-BookDetailBottom'>
 
                         <input onClick={() => addToCart(props)} type="button" value="ADD TO BAG" className='addToBag' />
-                        <input type="button" value="WISHLIST" className='wishlist' />
+                        <input onClick={() => addToWishlist(props)} type="button" value="WISHLIST" className='wishlist' />
+                    </div>
+                    <div className='addedToCart'>
+                        <input type="button" value="ADDED TO CART" className='addedToCart' />
                     </div>
                 </div>
 

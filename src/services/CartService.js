@@ -17,6 +17,10 @@ class CartService {
         return axiosService.post(`${baseURL}/addBookToCartByBookId`, data, header)
     }
 
+    addBookToWishlist(data) {
+        return axiosService.post(`${baseURL}/addBookToWishlistByBookId`, data, header)
+    }
+
     incrementCartQuanitity(data) {
         return axiosService.post(`${baseURL}/increamentBookQuantityInCart`, data, header)
     }
@@ -35,12 +39,22 @@ class CartService {
         return response;
     }
 
+    deleteBookFromWishlist=(data)=>{
+        let response = axiosService.put(`${baseURL}/deleteBookByWishlistId`, data, header)
+        return response;
+    }
+
 
 
 
     getAllBooksFromCart() {
         // const headers = header();
         return axiosService.get(`${baseURL}/getAllBooksInCart`, header)
+    }
+
+    getAllBooksFromWishlist() {
+       
+        return axiosService.get(`${baseURL}/getAllBooksInWishlist`, header)
     }
 
 

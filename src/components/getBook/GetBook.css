@@ -74,6 +74,7 @@
     background-color: #A03037;
     border: none;
     color: white;
+    cursor: pointer;
 }
 
 .wishlist {
@@ -86,6 +87,7 @@
     background-color: #5e5a5a;
     border: none;
     color: white;
+    cursor: pointer;
 }
 
 .updateQtyInCart {
@@ -407,4 +409,16 @@
     position: relative;
     left: 70px;
     font-size: small;
+}
+.addedToCart{
+    width:250px;
+    height: 38px;
+    display: flex;
+   
+    align-items: center;
+    justify-content: center;
+    background-color: #5e5a5a;
+    border: none;
+    color: white;
+    cursor: pointer;
 }

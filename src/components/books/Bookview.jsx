@@ -7,13 +7,13 @@ import Header from '../header/Header';
 import { useNavigate } from 'react-router-dom';
 
 function Bookview(props) {
-    
+
 
     const bookDetail = (data) => {
-        props.listenToBooks(true);
+        // props.listenToBooks(true);
         props.listenToEachBook(data);
     }
-   
+
 
 
     return (
@@ -21,7 +21,7 @@ function Bookview(props) {
 
             <div className='allign'>
 
-                <div className='booksContainer' onClick={()=>bookDetail(props.arrayBook)} >
+                <div className='booksContainer' onClick={() => bookDetail(props.arrayBook)} >
                     {/* <div> */}
                     <div className="bookTopSection">
                         <div className="booksImage">
