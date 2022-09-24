@@ -1,9 +1,10 @@
-import { Card } from '@mui/material';
+import { Card, Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Bookview from '../../components/books/Bookview';
 import GetBook from '../../components/getBook/GetBook';
 import Header from '../../components/header/Header';
+import usePagination from '../../components/pagination/Pagination';
 import BookService from '../../services/BookService';
 import './Dashboard.css'
 
@@ -13,22 +14,45 @@ function Dashboard(props) {
     const [bookArray, setBookArray] = useState([]);
     const [view, setView] = useState(true);
     const [selectedBook, setSelectedBook] = useState("");
+    const [page, setpage] = useState(1);
+    const [search, setSearch] = useState("");
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getBooks();
-    }, [])
+    }, [search])
+
 
     const getBooks = () => {
         setView(true)
         bookService.getAllBooks()
             .then((response) => {
-                console.log(response);
-                setBookArray(response.data.books)
+                console.log(response.data);
+                if (search) {
+                    let filterBook = response.data.books.filter(books => books.name.toLowerCase().includes(search.toLowerCase()))
+                    setBookArray(filterBook)
+                } else {
+                    setBookArray(response.data.books)
+                }
             }).catch((err) => {
                 console.log(err);
             })
+    }
+
+    const PER_PAGE = 5;
+
+    var bookArrayLength = bookArray ? bookArray.length : 0;
+    const pageCount = Math.ceil(bookArrayLength / PER_PAGE)
+    const paginate = usePagination(bookArray, PER_PAGE)
+
+    const changePage = (event, page) => {
+        setpage(page);
+        paginate.jump(page)
+    };
+
+    const searchBook = (value) => {
+        setSearch(value)
     }
 
     const lowtohigh = () => {
@@ -51,7 +75,7 @@ function Dashboard(props) {
     return (
         <>
 
-            < Header />
+            < Header search={searchBook} />
 
             {view ? <div>
 
@@ -72,12 +96,16 @@ function Dashboard(props) {
                     <div className='getbooks' >
 
                         {bookArray.length > 0 && bookArray.map((book, index) => (
-                            <Bookview key={index} arrayBook={book} getBooks={getBooks}  listenToEachBook={listenToEachBook} />
+                            <Bookview books={bookArray} key={index} arrayBook={book} getBooks={getBooks} listenToEachBook={listenToEachBook} />
                         ))}
 
                     </div>
                 </div>
             </div> : <GetBook selectedBook={selectedBook} />}
+
+            <div className='pagination'>
+                <Pagination count={pageCount} page={page} onChange={changePage} />
+            </div>
             {/* </div> : navigate ('/book')} */}
 
         </>
