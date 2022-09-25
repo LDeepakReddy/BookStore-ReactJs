@@ -25,7 +25,7 @@ function Header(props) {
 
     const navigate = useNavigate();
 
-    
+
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -47,7 +47,11 @@ function Header(props) {
         navigate('/cart')
     }
 
-   
+    const searching = (event) => {
+        props.search(event.target.value)
+    }
+
+
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -71,7 +75,7 @@ function Header(props) {
     }));
 
     const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: 'inherit',
+        // color: 'inherit',
         '& .MuiInputBase-input': {
             padding: theme.spacing(1, 1, 1, 0),
             // vertical padding + font size from searchIcon
@@ -90,12 +94,16 @@ function Header(props) {
                     <img className='bookImage' src={education} alt="" />
                     <span className='Booktitle' style={{ color: 'white' }}>Bookstore</span>
                 </div>
-                <Search>
+                <Search >
                     <SearchIconWrapper>
                         <SearchIcon />
                     </SearchIconWrapper>
                     <StyledInputBase
+                        onChange={searching}
+                       
                         placeholder="Search…"
+                        inputProps={{ 'aria-label': 'search' }}
+
 
                     />
                 </Search>

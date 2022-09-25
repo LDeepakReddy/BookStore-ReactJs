@@ -30,17 +30,18 @@ function Dashboard(props) {
             .then((response) => {
                 console.log(response.data);
                 if (search) {
+
                     let filterBook = response.data.books.filter(books => books.name.toLowerCase().includes(search.toLowerCase()))
                     setBookArray(filterBook)
                 } else {
                     setBookArray(response.data.books)
                 }
-            }).catch((err) => {
-                console.log(err);
+            }).catch((error) => {
+                console.log(error);
             })
     }
 
-    const PER_PAGE = 5;
+    const PER_PAGE = 8;
 
     var bookArrayLength = bookArray ? bookArray.length : 0;
     const pageCount = Math.ceil(bookArrayLength / PER_PAGE)
@@ -77,7 +78,7 @@ function Dashboard(props) {
 
             < Header search={searchBook} />
 
-            {view ? <div>
+            {view ? <div className='total'>
 
 
                 <div className='Heading'>
@@ -95,18 +96,23 @@ function Dashboard(props) {
 
                     <div className='getbooks' >
 
-                        {bookArray.length > 0 && bookArray.map((book, index) => (
+                        {paginate.currentData() ? paginate.currentData().map((book, index) => (
+                            <Bookview key={index} arrayBook={book} getBooks={getBooks} listenToEachBook={listenToEachBook} />
+                        ))
+                            : "No Books Available"}
+
+                        {/* {bookArray.length > 0 && bookArray.map((book, index) => (
                             <Bookview books={bookArray} key={index} arrayBook={book} getBooks={getBooks} listenToEachBook={listenToEachBook} />
-                        ))}
+                        ))} */}
 
                     </div>
                 </div>
             </div> : <GetBook selectedBook={selectedBook} />}
 
             <div className='pagination'>
-                <Pagination count={pageCount} page={page} onChange={changePage} />
+                <Pagination count={pageCount} page={page} onChange={changePage} variant="outlined" shape="rounded" />
             </div>
-            {/* </div> : navigate ('/book')} */}
+
 
         </>
     );
