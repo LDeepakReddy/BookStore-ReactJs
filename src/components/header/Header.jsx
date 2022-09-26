@@ -4,6 +4,7 @@ import education from '../../images/education.svg';
 import { Logout, PersonOutlined, ShoppingCartOutlined } from "@mui/icons-material";
 import MenuItem from '@mui/material/MenuItem';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 
 
@@ -94,7 +95,7 @@ function Header(props) {
                     <img className='bookImage' src={education} alt="" />
                     <span className='Booktitle' style={{ color: 'white' }}>Bookstore</span>
                 </div>
-                <Search >
+                {/* <Search >
                     <SearchIconWrapper>
                         <SearchIcon />
                     </SearchIconWrapper>
@@ -106,7 +107,11 @@ function Header(props) {
 
 
                     />
-                </Search>
+                </Search> */}
+                <div className="search">
+                    <div className="searchIcon"><SearchOutlinedIcon /></div>
+                    <input placeholder='Search...' type="text" className='inputSearch' onChange={searching} />
+                </div>
 
                 <div className="profile">
                     <PersonOutlined style={{ color: '#FFFFFF' }} />
