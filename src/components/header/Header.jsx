@@ -54,38 +54,38 @@ function Header(props) {
 
 
 
-    const Search = styled('div')(({ theme }) => ({
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: 'white',
+    // const Search = styled('div')(({ theme }) => ({
+    //     position: 'relative',
+    //     borderRadius: theme.shape.borderRadius,
+    //     backgroundColor: 'white',
 
-        marginLeft: '26px',
-        width: '490px',
-        height: '33px'
+    //     marginLeft: '26px',
+    //     width: '490px',
+    //     height: '33px'
 
-    }));
+    // }));
 
-    const SearchIconWrapper = styled('div')(({ theme }) => ({
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }));
+    // const SearchIconWrapper = styled('div')(({ theme }) => ({
+    //     padding: theme.spacing(0, 2),
+    //     height: '100%',
+    //     position: 'absolute',
+    //     pointerEvents: 'none',
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // }));
 
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        // color: 'inherit',
-        '& .MuiInputBase-input': {
-            padding: theme.spacing(1, 1, 1, 0),
-            // vertical padding + font size from searchIcon
-            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-            transition: theme.transitions.create('width'),
-            width: '400px',
+    // const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    //     // color: 'inherit',
+    //     '& .MuiInputBase-input': {
+    //         padding: theme.spacing(1, 1, 1, 0),
+    //         // vertical padding + font size from searchIcon
+    //         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    //         transition: theme.transitions.create('width'),
+    //         width: '400px',
 
-        },
-    }));
+    //     },
+    // }));
 
     return (
         <div className='headerToolbar'>
@@ -150,9 +150,9 @@ function Header(props) {
 
                 </div>
                 <div onClick={goToCart} className="carticon">
-                    <Badge badgeContent={1} color="primary">
+                    {/* <Badge badgeContent={1} color="primary"> */}
                         <ShoppingCartOutlined style={{ color: '#FFFFFF' }} />
-                    </Badge>
+                    {/* </Badge> */}
                     <span className="profile-name">Cart</span>
                 </div>
 
